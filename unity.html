@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0D1A0F">
+<title>Константин Емяшев — Unity Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0D1A0F;
+  --bg2:#111F14;
+  --bg3:#192B1C;
+  --border:#1E3322;
+  --text:#E2EDE4;
+  --muted:#7A9C80;
+  --accent:#4ADE80;
+  --accent2:#86EFAC;
+  --signal:#EAB308;
+  --pad:clamp(20px,6vw,80px);
+  --maxw:1100px;
+}
+::selection{background:rgba(74,222,128,.3);color:#0D1A0F}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:#0D1A0F}
+::-webkit-scrollbar-thumb{background:#22402A;border-radius:6px;border:2px solid #0D1A0F}
+::-webkit-scrollbar-thumb:hover{background:#2F5539}
+html{scrollbar-color:#22402A #0D1A0F}
+html{scroll-behavior:smooth;background:#0D1A0F;color-scheme:dark;-webkit-tap-highlight-color:rgba(74,222,128,.22)}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,26,15,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);height:60px;display:flex;align-items:center;gap:8px}
+.nav-logo{font-weight:700;font-size:1.05rem;letter-spacing:-.01em;flex:none}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2px;margin:0 auto}
+.nav-links a{padding:7px 14px;border-radius:6px;font-size:.88rem;color:var(--muted);transition:.2s}
+.nav-links a:hover,.nav-links a.active{background:var(--bg3);color:var(--text)}
+.nav-switch a{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border:1px solid var(--border);border-radius:8px;font-size:.83rem;color:var(--muted);transition:.2s}
+.nav-switch a:hover{border-color:var(--accent2);color:var(--accent2)}
+.nav-switch .pip{width:7px;height:7px;border-radius:50%;background:#6C8EF5;flex:none}
+.lang-sw{display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.lang-sw button{background:none;border:0;padding:6px 10px;cursor:pointer;color:var(--muted);font-size:.78rem;font-family:inherit;transition:.18s}
+.lang-sw button.on{background:var(--bg3);color:var(--text)}
+#progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:200;width:0}
+
+/* HERO */
+#home{padding:140px 0 80px;border-top:0}
+.hero-grid{display:grid;grid-template-columns:1fr 320px;gap:64px;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:.8rem;color:var(--muted);margin-bottom:28px}
+.hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--signal);animation:pulse 2s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(234,179,8,.5)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+h1{font-size:clamp(2.4rem,5.5vw,3.8rem);font-weight:700;line-height:1.1;letter-spacing:-.03em}
+h1 .role-line{display:block;color:var(--accent);margin-top:4px}
+.hero-sub{margin-top:20px;color:var(--muted);max-width:44ch;font-size:1.05rem;line-height:1.7}
+.hero-sub b{color:var(--text)}
+.hero-cta{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;font-size:.92rem;font-weight:500;font-family:inherit;cursor:pointer;border:0;transition:.2s}
+.btn-primary{background:var(--accent);color:#0D1A0F;font-weight:600}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.salary-badge{display:inline-flex;align-items:baseline;gap:8px;margin-top:22px;background:linear-gradient(135deg,rgba(74,222,128,.1),rgba(134,239,172,.06));border:1px solid rgba(74,222,128,.22);border-radius:10px;padding:12px 18px}
+.salary-badge .amount{font-size:1.6rem;font-weight:700;letter-spacing:-.02em;color:var(--accent)}
+.salary-badge .label{font-size:.78rem;color:var(--muted)}
+/* avatar spinner — green variant */
+.avatar-wrap{position:relative;display:flex;justify-content:center}
+.avatar-wrap::before{content:"";position:absolute;inset:-2px;border-radius:50%;background:conic-gradient(var(--accent),var(--accent2),var(--signal),var(--accent));animation:spin 10s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.avatar-wrap::after{content:"";position:absolute;inset:2px;border-radius:50%;background:var(--bg)}
+.avatar-placeholder{width:260px;height:260px;border-radius:50%;background:linear-gradient(135deg,var(--bg3),var(--bg2));border:4px solid var(--bg);position:relative;z-index:1;display:flex;align-items:center;justify-content:center;font-size:3.5rem;font-weight:700;color:var(--accent);letter-spacing:-.05em}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:52px}
+.stat{background:var(--bg2);padding:22px 18px;text-align:center}
+.stat .n{font-size:2rem;font-weight:700;letter-spacing:-.03em;color:var(--accent)}
+.stat .l{font-size:.8rem;color:var(--muted);margin-top:4px;line-height:1.4}
+
+/* metrics panel */
+.metrics-panel{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px;overflow:hidden}
+.mp-head{font-size:.85rem;font-weight:600;margin-bottom:20px;color:var(--text)}
+.mp-item{margin-bottom:18px}
+.mp-item:last-child{margin-bottom:0}
+.mp-label{font-size:.84rem;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between}
+.mp-label b{color:var(--accent)}
+.mp-track{height:8px;background:var(--bg3);border-radius:4px;overflow:hidden}
+.mp-fill{height:100%;width:var(--w);background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:4px;transform-origin:left;animation:grow 1.4s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0s)}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.mp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:1px;border-radius:8px;overflow:hidden}
+.mp-box{background:var(--bg2);padding:14px 16px}
+.mp-box .n{font-size:1.6rem;font-weight:700;letter-spacing:-.03em;color:var(--accent)}
+.mp-box .l{font-size:.78rem;color:var(--muted);margin-top:3px}
+
+/* sections */
+section{padding:80px 0;border-top:1px solid var(--border)}
+.sec-label{font-size:.75rem;font-family:'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
+.sec-sub{color:var(--muted);max-width:58ch;margin-bottom:42px;font-size:.97rem}
+
+/* cap cards */
+.cap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.cap-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s}
+.cap-card::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(74,222,128,.05),transparent);opacity:0;transition:opacity .3s}
+.cap-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.cap-card:hover::before{opacity:1}
+.cap-icon{font-size:1.6rem;margin-bottom:14px}
+.cap-card h3{font-size:1rem;font-weight:600;margin-bottom:8px}
+.cap-card p{font-size:.88rem;color:var(--muted);line-height:1.6}
+
+/* experience */
+.track-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px 28px 22px;margin-bottom:36px}
+.track-label{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.track-rail{position:relative;height:2px;background:var(--border)}
+.track-rail .fill{position:absolute;inset:0;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width 1.6s cubic-bezier(.3,.8,.2,1) .1s}
+.track-wrap.go .fill{width:100%}
+.track-pts{display:grid;margin-top:-5px}
+.track-pt{text-align:center}
+.track-pt .dot{width:10px;height:10px;border:2px solid var(--border);background:var(--bg2);border-radius:50%;margin:0 auto;transform:scale(.4);transition:transform .4s,border-color .4s;transition-delay:var(--td)}
+.track-wrap.go .dot{transform:scale(1);border-color:var(--accent)}
+.track-pt.last .dot{background:var(--signal)}
+.track-wrap.go .track-pt.last .dot{border-color:var(--signal)}
+.track-pt .yr{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted);margin-top:8px;display:block}
+.track-pt .rl{font-size:.82rem;color:var(--text);margin-top:3px;display:block;line-height:1.3}
+.track-pt.last .rl{color:var(--accent);font-weight:600}
+
+.timeline{display:grid;gap:0}
+.job{display:grid;grid-template-columns:180px 1fr;gap:32px;padding:32px 0;border-top:1px solid var(--border);position:relative}
+.job::before{content:"";position:absolute;left:180px;top:0;bottom:0;width:1px;background:var(--border)}
+.job:first-child{border-top:0}
+.job-when{padding-right:24px}
+.job-when .period{font-size:.82rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.job-when .dur{font-size:.75rem;color:var(--border);margin-top:4px;font-family:'JetBrains Mono',monospace}
+.job-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--accent);background:var(--bg);position:absolute;left:175px;top:36px}
+.job h3{font-size:1.15rem;font-weight:600;letter-spacing:-.01em}
+.job .co{color:var(--accent);font-size:.88rem;margin-top:4px;font-weight:500}
+.job-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.tag{font-size:.72rem;font-family:'JetBrains Mono',monospace;background:var(--bg3);border:1px solid var(--border);padding:3px 8px;border-radius:4px;color:var(--muted)}
+.tag.hi{border-color:rgba(74,222,128,.3);color:var(--accent)}
+ul.jlist{margin-top:14px;list-style:none;display:grid;gap:6px}
+ul.jlist li{font-size:.9rem;color:var(--muted);padding-left:16px;position:relative;line-height:1.6}
+ul.jlist li::before{content:"";position:absolute;left:0;top:.65em;width:6px;height:1px;background:var(--accent)}
+ul.jlist li b{color:var(--text);font-weight:500}
+.job-sub{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin-top:20px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.job-sub::after{content:"";height:1px;background:var(--border);flex:1}
+.stack-inline{font-size:.84rem;color:var(--muted);margin-top:6px;line-height:1.7}
+
+/* projects — shot cards */
+.shots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.shot-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:border-color .25s,transform .25s}
+.shot-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.shot-cover{aspect-ratio:16/9;background:var(--bg3);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center}
+.shot-cover .cg{position:absolute;inset:0;opacity:.22;background:linear-gradient(rgba(74,222,128,.12) 1px,transparent 1px) 0 0/100% 20px,linear-gradient(90deg,rgba(74,222,128,.12) 1px,transparent 1px) 0 0/20px 100%}
+.shot-cover.has-img .cg,.shot-cover.has-img .mk{display:none}
+.shot-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.07) 50%,transparent 60%);transform:translateX(-120%);transition:transform .7s ease}
+.shot-card:hover .shot-cover::after{transform:translateX(120%)}
+.shot-cover .pf-tag{position:absolute;top:8px;right:8px;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;background:rgba(13,26,15,.82);color:#fff;padding:3px 7px;border-radius:4px}
+.shot-cover .mk{font-size:2rem;font-weight:700;letter-spacing:-.04em;color:rgba(74,222,128,.25);position:relative;z-index:1;transition:transform .4s}
+.shot-card:hover .mk{transform:scale(1.08)}
+.shot-body{padding:16px 18px;flex:1;display:flex;flex-direction:column;gap:7px}
+.shot-body h3{font-size:.97rem;font-weight:600}
+.shot-body p{font-size:.84rem;color:var(--muted);line-height:1.6;flex:1}
+.shot-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.shot-tags span{font-size:.7rem;font-family:'JetBrains Mono',monospace;background:var(--bg3);border:1px solid var(--border);padding:3px 7px;border-radius:4px;color:var(--muted)}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.proj-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:border-color .25s,transform .25s}
+.proj-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.proj-cover{aspect-ratio:16/9;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:2.2rem;position:relative;overflow:hidden}
+.proj-cover .cg{position:absolute;inset:0;opacity:.22;background:linear-gradient(rgba(74,222,128,.12) 1px,transparent 1px) 0 0/100% 20px,linear-gradient(90deg,rgba(74,222,128,.12) 1px,transparent 1px) 0 0/20px 100%}
+.proj-body{padding:18px;flex:1;display:flex;flex-direction:column;gap:8px}
+.proj-body h3{font-size:.97rem;font-weight:600}
+.proj-body p{font-size:.84rem;color:var(--muted);line-height:1.6;flex:1}
+.proj-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.proj-tags span{font-size:.7rem;font-family:'JetBrains Mono',monospace;background:var(--bg3);border:1px solid var(--border);padding:3px 7px;border-radius:4px;color:var(--muted)}
+
+/* stack */
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:12px}
+.stack-item{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:18px 12px;text-align:center;transition:border-color .2s,transform .2s,background .2s;cursor:default}
+.stack-item:hover{border-color:var(--accent);transform:translateY(-3px);background:var(--bg3)}
+.stack-icon{font-size:2rem;margin-bottom:8px;line-height:1}
+.stack-name{font-size:.78rem;color:var(--muted);line-height:1.3}
+.stack-item.key .stack-name{color:var(--accent)}
+.stack-item.key{border-color:rgba(74,222,128,.25)}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.contact-text h2{margin-bottom:12px}
+.contact-text p{color:var(--muted);font-size:.97rem;margin-bottom:28px}
+.contact-links{display:grid;gap:10px}
+.contact-link{display:flex;align-items:center;gap:14px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 18px;transition:border-color .2s,transform .2s}
+.contact-link:hover{border-color:var(--accent);transform:translateX(4px)}
+.cl-icon{font-size:1.3rem;flex:none}
+.cl-body .cl-label{font-size:.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+.cl-body .cl-val{font-size:.92rem;color:var(--text);margin-top:2px}
+.avail-card{background:linear-gradient(135deg,rgba(74,222,128,.07),rgba(134,239,172,.04));border:1px solid rgba(74,222,128,.18);border-radius:12px;padding:24px;margin-top:20px}
+.avail-card p{color:var(--muted);font-size:.9rem;line-height:1.7}
+.avail-card .ac-head{font-weight:600;color:var(--text);margin-bottom:8px;font-size:1rem}
+footer{border-top:1px solid var(--border);padding:28px 0}
+.foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.foot-in span{font-size:.82rem;color:var(--muted)}
+.foot-other a{display:inline-flex;align-items:center;gap:7px;font-size:.83rem;color:var(--muted);border:1px solid var(--border);padding:7px 14px;border-radius:7px;transition:.2s}
+.foot-other a:hover{border-color:#6C8EF5;color:#6C8EF5}
+.foot-other .pip2{width:7px;height:7px;border-radius:50%;background:#6C8EF5}
+/* note */
+.shot-note{font-size:.83rem;color:var(--muted);margin-top:14px}
+.shot-note code{background:var(--bg2);border:1px solid var(--border);padding:1px 5px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:.82em}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease;transition-delay:var(--rd,0s)}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr}
+  .avatar-wrap{display:none}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .job{grid-template-columns:1fr;gap:12px}
+  .job::before,.job-dot{display:none}
+  .nav-links{display:none}
+  .contact-grid{grid-template-columns:1fr}
+  .track-pts{font-size:.7rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001s!important;transition-duration:.001s!important}
+  .rv{opacity:1;transform:none}
+  .mp-fill{animation:none;transform:scaleX(1)}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav>
+  <div class="nav-in">
+    <a class="nav-logo" href="#home">КЕ<span>.</span></a>
+    <div class="nav-links">
+      <a href="#cap" data-i="n1">Что делаю</a>
+      <a href="#exp" data-i="n2">Опыт</a>
+      <a href="#proj" data-i="n3">Проекты</a>
+      <a href="#stack" data-i="n4">Стек</a>
+      <a href="#contact" data-i="n5">Контакты</a>
+    </div>
+    <div class="nav-switch">
+      <a href="ai.html"><span class="pip"></span><span data-i="sw">→ AI/LLM резюме</span></a>
+    </div>
+    <div class="lang-sw">
+      <button class="on" id="ru">RU</button>
+      <button id="en">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+<div class="wrap">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow"><span class="dot"></span><span data-i="ey">Unity Developer / Lead R&D · Москва · открыт к предложениям</span></div>
+      <h1>
+        <span>Константин Емяшев</span>
+        <span class="role-line" data-i="h1role">Unity Developer</span>
+      </h1>
+      <p class="hero-sub rv" style="--rd:.2s" data-i="sub">Senior Unity Developer и Tech Lead. <b>5 лет коммерческого опыта</b>, 7 релизов в продакшне — от hyper-casual до Steam. Путь от Junior до Lead R&D внутри одной компании.</p>
+      <div class="hero-cta rv" style="--rd:.4s">
+        <a href="#contact" class="btn btn-primary" data-i="cta1">Связаться</a>
+        <a href="#proj" class="btn btn-outline" data-i="cta2">Посмотреть проекты</a>
+      </div>
+    </div>
+    <div class="avatar-wrap rv" style="--rd:.15s">
+      <div class="avatar-placeholder" id="avatarBox">КЕ</div>
+    </div>
+  </div>
+  <div class="stats rv" style="--rd:.5s">
+    <div class="stat"><div class="n" data-count="5">0</div><div class="l" data-i="s1">лет коммерческого опыта</div></div>
+    <div class="stat"><div class="n" data-count="7">0</div><div class="l" data-i="s2">релизов iOS / Android / Steam</div></div>
+    <div class="stat"><div class="n" data-count="3">0</div><div class="l" data-i="s3">платформы: mobile, WebGL, desktop</div></div>
+    <div class="stat"><div class="n" data-count="3">0</div><div class="l" data-i="s4">разработчика в R&D-команде</div></div>
+  </div>
+</div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="cap">
+<div class="wrap">
+  <div class="rv"><div class="sec-label">01</div>
+  <h2 data-i="h-cap">Что я делаю</h2>
+  <p class="sec-sub" data-i="sub-cap">Полный цикл разработки мобильных и кросс-платформенных Unity-проектов — от архитектуры до прод-релиза.</p></div>
+  <div class="cap-grid rv">
+    <div class="cap-card"><div class="cap-icon">⚙️</div><h3 data-i="c1h">Кор- и мета-механики</h3><p data-i="c1p">Полный цикл игровой логики: кор-геймплей, прогрессия, экономика, UI. DI (Zenject), ECS, реактивные паттерны (UniRx/UniTask). Проекты от прототипа до прод-релиза.</p></div>
+    <div class="cap-card"><div class="cap-icon">🚀</div><h3 data-i="c2h">Оптимизация</h3><p data-i="c2p">Build size ×3 вниз (400→120 MB), FPS ×3+ вверх (15→50) на low-tier устройствах. Draw-call и raycast, Sprite Atlas, Asset Bundles, профилирование памяти.</p></div>
+    <div class="cap-card"><div class="cap-icon">🌐</div><h3 data-i="c3h">Портирование и платформы</h3><p data-i="c3p">Мобильные проекты на WebGL и десктоп (Steam, Nutaku): платёжные SDK, требования площадок. Addressables + CDN — обновления без стора.</p></div>
+    <div class="cap-card"><div class="cap-icon">👥</div><h3 data-i="c4h">Lead и менторство</h3><p data-i="c4p">Руководство R&D-командой из 3 разработчиков, техсобеседования, код-ревью, менторство. Owning проектов от прототипа до пост-релиза.</p></div>
+  </div>
+
+  <!-- Metrics panel (instead of pipeline) -->
+  <div class="metrics-panel rv" style="margin-top:32px">
+    <div class="mp-head" data-i="mp-head">Ключевые метрики · из проектов Meowpunk</div>
+    <div class="mp-item">
+      <div class="mp-label"><span data-i="mp1">Размер сборки</span><b>400 MB → 120 MB</b></div>
+      <div class="mp-track"><div class="mp-fill" style="--w:30%;--d:.1s"></div></div>
+    </div>
+    <div class="mp-item">
+      <div class="mp-label"><span data-i="mp2">FPS на low-tier Android/iOS</span><b>15 → 50 FPS</b></div>
+      <div class="mp-track"><div class="mp-fill" style="--w:100%;--d:.3s"></div></div>
+    </div>
+    <div class="mp-item">
+      <div class="mp-label"><span data-i="mp3">Платформы</span><b>iOS · Android · WebGL · Steam</b></div>
+      <div class="mp-track"><div class="mp-fill" style="--w:75%;--d:.5s"></div></div>
+    </div>
+    <div class="mp-grid" style="margin-top:20px">
+      <div class="mp-box"><div class="n">5</div><div class="l" data-i="mb1">App Store релизов</div></div>
+      <div class="mp-box"><div class="n">2</div><div class="l" data-i="mb2">Telegram mini-app</div></div>
+      <div class="mp-box"><div class="n">3×</div><div class="l" data-i="mb3">рост FPS</div></div>
+      <div class="mp-box"><div class="n">3×</div><div class="l" data-i="mb4">снижение build size</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="exp">
+<div class="wrap">
+  <div class="rv"><div class="sec-label">02</div>
+  <h2 data-i="h-exp">Опыт</h2>
+  <p class="sec-sub" data-i="sub-exp">5 лет 3 месяца. Три компании, путь от Junior до Lead R&D.</p></div>
+
+  <div class="track-wrap rv" id="utrack">
+    <div class="track-label" data-i="tr">Карьерный путь</div>
+    <div class="track-rail"><div class="fill"></div></div>
+    <div class="track-pts" style="grid-template-columns:repeat(4,1fr)">
+      <div class="track-pt"><div class="dot" style="--td:.2s"></div><span class="yr">Hotger 2021</span><span class="rl">Junior</span></div>
+      <div class="track-pt"><div class="dot" style="--td:.6s"></div><span class="yr">Matryoshka 2021</span><span class="rl">Junior+</span></div>
+      <div class="track-pt"><div class="dot" style="--td:1.0s"></div><span class="yr">Meowpunk 2022</span><span class="rl">Middle → Senior</span></div>
+      <div class="track-pt last"><div class="dot" style="--td:1.4s"></div><span class="yr">2024 — <span data-i="now">н.в.</span></span><span class="rl">Lead R&D</span></div>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="job rv">
+      <div class="job-when"><div class="period mono">07.2022 — <span data-i="now">н.в.</span></div><div class="dur mono" data-i="d1">4 года 2 мес.</div></div>
+      <div class="job-dot"></div>
+      <div>
+        <h3 data-i="j1t">Lead R&D / Senior Unity Developer</h3>
+        <div class="co">Meowpunk</div>
+        <div class="job-tags"><span class="tag hi">Unity</span><span class="tag hi">C#</span><span class="tag hi">Lead</span><span class="tag">ECS</span><span class="tag">Addressables</span><span class="tag">Photon</span></div>
+        <div class="job-sub" data-i="js1">Оптимизация и производительность</div>
+        <ul class="jlist">
+          <li data-i="j1a"><b>Build size ×3</b> — с 400 MB до 120 MB: Sprite Atlas, Asset Bundles, стриппинг, Addressables.</li>
+          <li data-i="j1b"><b>FPS ×3+</b> на low-tier Android и iOS (15 → 50): draw-call батчинг, raycast оптимизация, профилирование памяти.</li>
+          <li data-i="j1c">Миграция билд-пайплайна на CDN + Addressables: контроль размера установки, обновления без сторов.</li>
+        </ul>
+        <div class="job-sub" data-i="js2">Разработка и архитектура</div>
+        <ul class="jlist">
+          <li data-i="j1d">Полный цикл кор- и мета-механик в мобильных и кросс-платформенных продуктовых проектах.</li>
+          <li data-i="j1e">Портирование на WebGL и десктоп (Nutaku, Steam): платёжные SDK, аналитика, техтребования площадок.</li>
+          <li data-i="j1f">Клиент-серверное взаимодействие, синхронизация состояния, JSON-конфиги.</li>
+          <li data-i="j1g">UI (UGUI / UI Toolkit / NGUI): реализация и оптимизация draw-calls и raycast.</li>
+          <li data-i="j1h">Интеграция AppsFlyer, Firebase, Remote Config; продуктовая аналитика с продактом.</li>
+          <li data-i="j1i">Редакторные инструменты для геймдизайнеров и промо-команды.</li>
+        </ul>
+        <div class="job-sub" data-i="js3">Lead и R&D</div>
+        <ul class="jlist">
+          <li data-i="j1j">Руководство R&D-командой из 3 разработчиков: портирование, запуск новых платформ, постановка задач.</li>
+          <li data-i="j1k">Технические собеседования, менторство middle и junior.</li>
+          <li data-i="j1l">Owning проектов от прототипа до прод-релиза и пост-релизной поддержки.</li>
+        </ul>
+        <div class="job-sub" data-i="js4">Стек</div>
+        <div class="stack-inline" data-i="stk">Zenject · ECS · Addressables · Asset Bundles · Sprite Atlas · I2 Localization · DoTween · UniRx · UniTask · Photon · WebSocket · BestHTTP · AppsFlyer · Firebase · Remote Config · Sirenix/Odin · Steam API · TON Connect · WebGL · Git · CI/CD (TeamCity)</div>
+      </div>
+    </div>
+    <div class="job rv">
+      <div class="job-when"><div class="period mono">10.2021 — 06.2022</div><div class="dur mono" data-i="d2">9 мес.</div></div>
+      <div class="job-dot"></div>
+      <div>
+        <h3 data-i="j2t">Junior+ Developer</h3>
+        <div class="co">Matryoshka</div>
+        <div class="job-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">TeamCity</span><span class="tag">Kotlin</span><span class="tag">Spine</span></div>
+        <ul class="jlist" style="margin-top:12px">
+          <li data-i="j2a">Кор- и мета-механики FarmingFever (iOS/Android), сборка релиз-сцен.</li>
+          <li data-i="j2b">CI/CD в TeamCity: iOS, Android, Xcode-симулятор; нативная обвязка на Kotlin.</li>
+          <li data-i="j2c">Миграция сохранений, обновление Unity, breaking changes. Sprite Atlas, Asset Bundles, Spine.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job rv">
+      <div class="job-when"><div class="period mono">06.2021 — 10.2021</div><div class="dur mono" data-i="d3">5 мес.</div></div>
+      <div class="job-dot"></div>
+      <div>
+        <h3 data-i="j3t">Junior Developer</h3>
+        <div class="co">Hotger</div>
+        <div class="job-tags"><span class="tag">Unity</span><span class="tag">hyper-casual</span><span class="tag">mobile</span></div>
+        <ul class="jlist" style="margin-top:12px">
+          <li data-i="j3a">Прототипы hyper-casual с нуля, кор- и мета-механики, реклама и аналитика SDK.</li>
+          <li data-i="j3b">Оптимизация под low-tier устройства.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job rv">
+      <div class="job-when"><div class="period mono">2021</div><div class="dur mono" data-i="d4">образование</div></div>
+      <div class="job-dot"></div>
+      <div><h3 data-i="j4t">Бакалавр, ДГТУ</h3><div class="co" data-i="j4c">Информатика и вычислительная техника</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="proj">
+<div class="wrap">
+  <div class="rv"><div class="sec-label">03</div>
+  <h2 data-i="h-proj">Выпущенные проекты</h2>
+  <p class="sec-sub" data-i="sub-proj">5 релизов в App Store, 1 в Google Play, 2 Telegram Mini Apps на TON. Полный цикл — от прототипа до прод-релиза и поддержки.</p></div>
+
+  <div class="shots-grid rv">
+    <a class="shot-card" href="https://apps.apple.com/us/app/last-oasis/id6479317330" target="_blank" rel="noopener">
+      <div class="shot-cover" data-img="last-oasis" style="background-color:#16233A"><span class="cg"></span><span class="pf-tag">iOS</span><span class="mk">LO</span></div>
+      <div class="shot-body"><h3>Last Oasis</h3><p data-i="r1">Кор- и мета-механики, оптимизация клиента, клиент-серверная часть.</p><div class="shot-tags"><span>ECS</span><span>Addressables</span><span>Photon</span></div></div>
+    </a>
+    <a class="shot-card" href="https://apps.apple.com/us/app/hearttok-romantic-stories/id6689520791" target="_blank" rel="noopener">
+      <div class="shot-cover" data-img="hearttok" style="background-color:#3A1630"><span class="cg"></span><span class="pf-tag">iOS</span><span class="mk">HT</span></div>
+      <div class="shot-body"><h3>HeartTok</h3><p data-i="r2">Мета-слой интерактивных историй, конфиги на JSON, продуктовая аналитика.</p><div class="shot-tags"><span>Firebase</span><span>AppsFlyer</span><span>Remote Config</span></div></div>
+    </a>
+    <a class="shot-card" href="https://apps.apple.com/us/app/zombie-crusher-survival-rpg/id6446779397" target="_blank" rel="noopener">
+      <div class="shot-cover" data-img="zombie-crusher" style="background-color:#1E2E1B"><span class="cg"></span><span class="pf-tag">iOS</span><span class="mk">ZC</span></div>
+      <div class="shot-body"><h3>Zombie Crusher</h3><p data-i="r3">Боевые и мета-механики, оптимизация под low-tier устройства.</p><div class="shot-tags"><span>Unity</span><span>Zenject</span><span>UniTask</span></div></div>
+    </a>
+    <a class="shot-card" href="https://apps.apple.com/us/app/heroes-tale-raid-and-loot/id6450005708" target="_blank" rel="noopener">
+      <div class="shot-cover" data-img="heroes-tale" style="background-color:#2C2413"><span class="cg"></span><span class="pf-tag">iOS</span><span class="mk">HT</span></div>
+      <div class="shot-body"><h3>Heroes Tale</h3><p data-i="r4">Прогрессия, экономика, редакторные инструменты для геймдизайна.</p><div class="shot-tags"><span>Unity</span><span>Odin</span><span>Photon</span></div></div>
+    </a>
+    <a class="shot-card" href="https://apps.apple.com/us/app/sin-city-girls/id6474139081" target="_blank" rel="noopener">
+      <div class="shot-cover" data-img="sin-city-girls" style="background-color:#2A1526"><span class="cg"></span><span class="pf-tag">iOS · WebGL · Steam</span><span class="mk">SC</span></div>
+      <div class="shot-body"><h3>Sin City Girls</h3><p data-i="r5">Портирование на WebGL и Steam, платёжные SDK.</p><div class="shot-tags"><span>WebGL</span><span>Steam API</span><span>Nutaku</span></div></div>
+    </a>
+    <a class="shot-card" href="https://play.google.com/store/apps/details?id=com.matryoshka.farminggame" target="_blank" rel="noopener">
+      <div class="shot-cover" data-img="farmingfever" style="background-color:#15291F"><span class="cg"></span><span class="pf-tag">Android</span><span class="mk">FF</span></div>
+      <div class="shot-body"><h3>FarmingFever</h3><p data-i="r6">Matryoshka: механики, CI/CD в TeamCity, Spine-анимации, миграция сохранений.</p><div class="shot-tags"><span>Unity</span><span>Kotlin</span><span>TeamCity</span></div></div>
+    </a>
+  </div>
+  <p class="shot-note rv" data-i="ns">Плитки ждут скриншоты: положи файлы в <code>img/</code> с именами <code>last-oasis.jpg</code>, <code>hearttok.jpg</code>, <code>zombie-crusher.jpg</code>, <code>heroes-tale.jpg</code>, <code>sin-city-girls.jpg</code>, <code>farmingfever.jpg</code>.</p>
+
+  <div style="margin-top:40px" class="rv">
+    <p class="sec-sub" data-i="sub-ton">Telegram Mini Apps · TON</p>
+    <div class="proj-grid">
+      <a class="proj-card" href="https://t.me/wmarket_ton_bot/WangMarket" target="_blank" rel="noopener">
+        <div class="proj-cover" style="background:#0A1A0C"><span class="cg"></span><span style="position:relative;z-index:1;color:rgba(74,222,128,.3);font-weight:800;letter-spacing:-.04em">WM</span></div>
+        <div class="proj-body"><h3>WangMarket</h3><p data-i="rton1">Мини-приложение с TON-кошельком и внутренней экономикой.</p><div class="proj-tags"><span>WebGL</span><span>TON Connect</span><span>Unity</span></div></div>
+      </a>
+      <a class="proj-card" href="https://t.me/FlappyMoney_Bot?startapp=re" target="_blank" rel="noopener">
+        <div class="proj-cover" style="background:#0A1A0C"><span class="cg"></span><span style="position:relative;z-index:1;color:rgba(74,222,128,.3);font-weight:800;letter-spacing:-.04em">FM</span></div>
+        <div class="proj-body"><h3>FlappyMoney</h3><p data-i="rton2">Аркада в Telegram: быстрая загрузка WebGL, игровые вебхуки.</p><div class="proj-tags"><span>WebGL</span><span>TON Connect</span><span>Unity</span></div></div>
+      </a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+<div class="wrap">
+  <div class="rv"><div class="sec-label">04</div>
+  <h2 data-i="h-stack">Стек</h2>
+  <p class="sec-sub" data-i="sub-stack">Всё, с чем работал в проде и готов работать в следующем проекте. Выделенные — ключевые компетенции.</p></div>
+  <div class="stack-grid rv">
+    <div class="stack-item key"><div class="stack-icon">🎮</div><div class="stack-name">Unity</div></div>
+    <div class="stack-item key"><div class="stack-icon">#️⃣</div><div class="stack-name">C#</div></div>
+    <div class="stack-item key"><div class="stack-icon">🧩</div><div class="stack-name">Zenject (DI)</div></div>
+    <div class="stack-item key"><div class="stack-icon">⚡</div><div class="stack-name">ECS</div></div>
+    <div class="stack-item key"><div class="stack-icon">📦</div><div class="stack-name">Addressables</div></div>
+    <div class="stack-item key"><div class="stack-icon">🔄</div><div class="stack-name">UniRx / UniTask</div></div>
+    <div class="stack-item"><div class="stack-icon">🌐</div><div class="stack-name">Photon</div></div>
+    <div class="stack-item"><div class="stack-icon">🎨</div><div class="stack-name">UGUI / UI Toolkit</div></div>
+    <div class="stack-item"><div class="stack-icon">🦴</div><div class="stack-name">Spine</div></div>
+    <div class="stack-item"><div class="stack-icon">🔥</div><div class="stack-name">Firebase</div></div>
+    <div class="stack-item"><div class="stack-icon">📊</div><div class="stack-name">AppsFlyer</div></div>
+    <div class="stack-item"><div class="stack-icon">🖥️</div><div class="stack-name">WebGL / Steam</div></div>
+    <div class="stack-item"><div class="stack-icon">⚙️</div><div class="stack-name">TeamCity CI/CD</div></div>
+    <div class="stack-item"><div class="stack-icon">📝</div><div class="stack-name">Git</div></div>
+    <div class="stack-item"><div class="stack-icon">💎</div><div class="stack-name">Sirenix/Odin</div></div>
+    <div class="stack-item"><div class="stack-icon">🇬🇧</div><div class="stack-name" data-i="en-skill">Английский B2</div></div>
+  </div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="wrap">
+  <div class="rv"><div class="sec-label">05</div></div>
+  <div class="contact-grid">
+    <div class="contact-text rv">
+      <h2 data-i="h-cont">Контакты</h2>
+      <p data-i="sub-cont">Расскажите про задачу — отвечу в тот же день.</p>
+      <div class="avail-card">
+        <div class="ac-head" data-i="av-head">Готовность к работе</div>
+        <p data-i="avail">Москва. Готов к переезду в Казань, к командировкам. Офис, гибрид, удалённо. Гражданство РФ.</p>
+      </div>
+    </div>
+    <div class="contact-links rv">
+      <a class="contact-link" href="https://t.me/shegan12" target="_blank" rel="noopener">
+        <div class="cl-icon">✈️</div><div class="cl-body"><div class="cl-label">Telegram</div><div class="cl-val">@shegan12</div></div>
+      </a>
+      <a class="contact-link" href="mailto:emyashev2011@gmail.com">
+        <div class="cl-icon">📧</div><div class="cl-body"><div class="cl-label">Email</div><div class="cl-val">emyashev2011@gmail.com</div></div>
+      </a>
+      <a class="contact-link" href="tel:+79185341499">
+        <div class="cl-icon">📱</div><div class="cl-body"><div class="cl-label" data-i="ph">Телефон</div><div class="cl-val">+7 918 534-14-99</div></div>
+      </a>
+      <a class="contact-link" href="https://github.com/kioflex12" target="_blank" rel="noopener">
+        <div class="cl-icon">💻</div><div class="cl-body"><div class="cl-label">GitHub</div><div class="cl-val">kioflex12</div></div>
+      </a>
+      <a class="contact-link" href="https://vk.com/shegan12" target="_blank" rel="noopener">
+        <div class="cl-icon">💬</div><div class="cl-body"><div class="cl-label">VKontakte</div><div class="cl-val">shegan12</div></div>
+      </a>
+    </div>
+  </div>
+</div>
+</section>
+
+<footer>
+<div class="wrap">
+  <div class="foot-in">
+    <span>© 2026 Константин Емяшев · Unity Developer</span>
+    <div class="foot-other"><a href="ai.html"><span class="pip2"></span><span data-i="sw">→ AI/LLM резюме</span></a></div>
+  </div>
+</div>
+</footer>
+
+<script>
+const STILL=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+const D={
+  n1:"What I do",n2:"Experience",n3:"Projects",n4:"Stack",n5:"Contacts",
+  sw:"→ AI/LLM resume",
+  ey:"Unity Developer / Lead R&D · Moscow · open to offers",
+  h1role:"Unity Developer",
+  sub:"Senior Unity Developer and Tech Lead. <b>5 years commercial experience</b>, 7 production releases — from hyper-casual to Steam. From Junior to Lead R&D inside one company.",
+  salNote:"net · Unity Developer",
+  cta1:"Contact me",cta2:"View projects",
+  s1:"years commercial experience",s2:"releases iOS / Android / Steam",s3:"platforms: mobile, WebGL, desktop",s4:"developers in R&D team",
+  "h-cap":"What I do","sub-cap":"Full-cycle development of mobile and cross-platform Unity projects — from architecture to production release.",
+  c1h:"Core and meta mechanics",c1p:"Full-cycle game logic: core gameplay, progression, economy, UI. DI (Zenject), ECS, reactive patterns (UniRx/UniTask). Projects from prototype to release.",
+  c2h:"Optimisation",c2p:"Build size ×3 down (400→120 MB), FPS ×3+ up (15→50) on low-tier devices. Draw-call and raycast, Sprite Atlas, Asset Bundles, memory profiling.",
+  c3h:"Porting and platforms",c3p:"Mobile projects to WebGL and desktop (Steam, Nutaku): payment SDKs, platform requirements. Addressables + CDN — updates without store releases.",
+  c4h:"Lead and mentoring",c4p:"R&D team of 3 developers, technical interviews, code review, mentoring. Owning projects from prototype to post-release support.",
+  "mp-head":"Key metrics · from Meowpunk projects",
+  mp1:"Build size",mp2:"FPS on low-tier Android/iOS",mp3:"Platforms",
+  mb1:"App Store releases",mb2:"Telegram mini-apps",mb3:"FPS gain",mb4:"build size reduction",
+  "h-exp":"Experience","sub-exp":"5 years 3 months. Three companies, from Junior to Lead R&D.",
+  tr:"Career track",
+  d1:"4 yr 2 mo",d2:"9 mo",d3:"5 mo",d4:"education",
+  j1t:"Lead R&D / Senior Unity Developer",
+  js1:"Optimisation and performance",js2:"Development and architecture",js3:"Lead and R&D",js4:"Stack",
+  j1a:"<b>Build size ×3</b> — from 400 MB to 120 MB: Sprite Atlas, Asset Bundles, stripping, Addressables.",
+  j1b:"<b>FPS ×3+</b> on low-tier Android and iOS (15 → 50): draw-call batching, raycast optimisation, memory profiling.",
+  j1c:"Migrated build pipeline to CDN + Addressables: install size control, updates without store releases.",
+  j1d:"Full-cycle core and meta mechanics in mobile and cross-platform production projects.",
+  j1e:"Ported to WebGL and desktop (Nutaku, Steam): payment SDKs, analytics, platform requirements.",
+  j1f:"Client-server communication, state sync, JSON configs.",
+  j1g:"UI (UGUI / UI Toolkit / NGUI): implementation and draw-call and raycast optimisation.",
+  j1h:"AppsFlyer, Firebase, Remote Config integration; product analytics with the PM.",
+  j1i:"Editor tooling for game designers and the promo team.",
+  j1j:"Led R&D team of 3 developers: porting, new platforms, task planning.",
+  j1k:"Technical interviews, mentoring middle and junior devs.",
+  j1l:"Owning projects from prototype through production release and post-release support.",
+  stk:"Zenject · ECS · Addressables · Asset Bundles · Sprite Atlas · I2 Localization · DoTween · UniRx · UniTask · Photon · WebSocket · BestHTTP · AppsFlyer · Firebase · Remote Config · Sirenix/Odin · Steam API · TON Connect · WebGL · Git · CI/CD (TeamCity)",
+  j2t:"Junior+ Developer",
+  j2a:"Core and meta mechanics FarmingFever (iOS/Android), release scene assembly.",
+  j2b:"CI/CD in TeamCity: iOS, Android, Xcode simulator; native Kotlin wrapper.",
+  j2c:"Save migration, Unity version upgrade, breaking changes. Sprite Atlas, Asset Bundles, Spine.",
+  j3t:"Junior Developer",j3a:"Hyper-casual prototypes from scratch, core and meta mechanics, ad and analytics SDK.",j3b:"Optimisation for low-tier devices.",
+  j4t:"BSc, DSTU",j4c:"Computer Science and Engineering",
+  "h-proj":"Released projects","sub-proj":"5 App Store releases, 1 Google Play, 2 Telegram Mini Apps on TON. Full cycle — from prototype to release and support.",
+  r1:"Core and meta mechanics, client optimisation, client-server layer.",r2:"Meta layer for interactive stories, JSON configs, product analytics.",
+  r3:"Combat and meta mechanics, optimisation for low-tier devices.",r4:"Progression and economy, editor tooling for game design.",
+  r5:"Ported to WebGL and Steam, payment SDK integration.",r6:"Matryoshka: mechanics, CI/CD in TeamCity, Spine animations, save migration.",
+  ns:"Screenshot slots: drop files into <code>img/</code> named <code>last-oasis.jpg</code>, <code>hearttok.jpg</code>, <code>zombie-crusher.jpg</code>, <code>heroes-tale.jpg</code>, <code>sin-city-girls.jpg</code>, <code>farmingfever.jpg</code>.",
+  "sub-ton":"Telegram Mini Apps · TON",
+  rton1:"Mini app with TON wallet connection and in-app economy.",rton2:"Telegram arcade: fast WebGL loading, game event webhooks.",
+  "h-stack":"Stack","sub-stack":"Everything I have worked with in production and am ready to bring to the next project. Highlighted — key competencies.",
+  "en-skill":"English B2",
+  "h-cont":"Contacts","sub-cont":"Tell me about the role — I reply the same day.",
+  "av-head":"Availability",avail:"Moscow. Open to relocating to Kazan, business trips. Office, hybrid, remote. Russian citizenship.",ph:"Phone",now:"now",
+};
+const nodes=[...document.querySelectorAll('[data-i]')];
+const RU=new Map(nodes.map(n=>[n,n.innerHTML]));
+let LANG='ru';
+function setLang(l){LANG=l;const en=l==='en';nodes.forEach(n=>{n.innerHTML=en?(D[n.dataset.i]??RU.get(n)):RU.get(n);});document.documentElement.lang=l;document.getElementById('ru').classList.toggle('on',!en);document.getElementById('en').classList.toggle('on',en);}
+document.getElementById('ru').onclick=()=>setLang('ru');
+document.getElementById('en').onclick=()=>setLang('en');
+/* reveal */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');io.unobserve(e.target);});},{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+/* track */
+const tio=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('go');tio.unobserve(e.target);}});},{threshold:.2});
+document.querySelectorAll('.track-wrap').forEach(t=>tio.observe(t));
+/* counters */
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const t=+el.dataset.count;if(STILL){el.textContent=t;return;}
+  const c=new IntersectionObserver(es=>{if(!es[0].isIntersecting)return;c.disconnect();let v=0;const s=()=>{v++;el.textContent=v;if(v<t)setTimeout(s,500/t+80);};s();},{threshold:.4});c.observe(el);
+});
+/* nav + progress */
+const prog=document.getElementById('progress');
+const navAs=[...document.querySelectorAll('.nav-links a')];
+const secs=navAs.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+let raf=null;
+function onScroll(){const h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';let cur=-1;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<=80)cur=i;});navAs.forEach((a,i)=>a.classList.toggle('active',i===cur));raf=null;}
+addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(onScroll);},{passive:true});onScroll();
+/* screenshots */
+document.querySelectorAll('[data-img]').forEach(c=>{['jpg','png','webp'].forEach(ext=>{const im=new Image();im.onload=()=>{c.style.backgroundImage='url("img/'+c.dataset.img+'.'+ext+'")';c.classList.add('has-img');};im.src='img/'+c.dataset.img+'.'+ext;});});
+/* avatar */
+const av=document.getElementById('avatarBox');['jpg','png','webp'].forEach(ext=>{const im=new Image();im.onload=()=>{av.style.backgroundImage='url("img/avatar.'+ext+'")';av.style.backgroundSize='cover';av.style.backgroundPosition='center';av.textContent='';};im.src='img/avatar.'+ext;});
+</script>
+</body>
+</html>
