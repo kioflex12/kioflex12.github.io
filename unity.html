@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#0D1A0F">
+<meta name="theme-color" content="#0F1117">
 <title>Константин Емяшев — Unity Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,32 +12,32 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0D1A0F;
-  --bg2:#111F14;
-  --bg3:#192B1C;
-  --border:#1E3322;
-  --text:#E2EDE4;
-  --muted:#7A9C80;
-  --accent:#4ADE80;
-  --accent2:#86EFAC;
-  --signal:#EAB308;
+  --bg:#0F1117;
+  --bg2:#161B27;
+  --bg3:#1E2535;
+  --border:#252D3D;
+  --text:#E2E8F0;
+  --muted:#8892A4;
+  --accent:#F5A524;
+  --accent2:#FCD34D;
+  --signal:#FB923C;
   --pad:clamp(20px,6vw,80px);
   --maxw:1100px;
 }
-::selection{background:rgba(74,222,128,.3);color:#0D1A0F}
+::selection{background:rgba(245,165,36,.3);color:#0F1117}
 ::-webkit-scrollbar{width:11px;height:11px}
-::-webkit-scrollbar-track{background:#0D1A0F}
-::-webkit-scrollbar-thumb{background:#22402A;border-radius:6px;border:2px solid #0D1A0F}
-::-webkit-scrollbar-thumb:hover{background:#2F5539}
-html{scrollbar-color:#22402A #0D1A0F}
-html{scroll-behavior:smooth;background:#0D1A0F;color-scheme:dark;-webkit-tap-highlight-color:rgba(74,222,128,.22)}
+::-webkit-scrollbar-track{background:#0F1117}
+::-webkit-scrollbar-thumb{background:#2A3346;border-radius:6px;border:2px solid #0F1117}
+::-webkit-scrollbar-thumb:hover{background:#3A4560}
+html{scrollbar-color:#2A3346 #0F1117}
+html{scroll-behavior:smooth;background:#0F1117;color-scheme:dark;-webkit-tap-highlight-color:rgba(245,165,36,.22)}
 body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,26,15,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,17,23,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
 .nav-in{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);height:60px;display:flex;align-items:center;gap:8px}
 .nav-logo{font-weight:700;font-size:1.05rem;letter-spacing:-.01em;flex:none}
 .nav-logo span{color:var(--accent)}
@@ -57,18 +57,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,26,15,.88
 .hero-grid{display:grid;grid-template-columns:1fr 320px;gap:64px;align-items:center}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:.8rem;color:var(--muted);margin-bottom:28px}
 .hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--signal);animation:pulse 2s ease-out infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(234,179,8,.5)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(251,146,60,.5)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
 h1{font-size:clamp(2.4rem,5.5vw,3.8rem);font-weight:700;line-height:1.1;letter-spacing:-.03em}
 h1 .role-line{display:block;color:var(--accent);margin-top:4px}
 .hero-sub{margin-top:20px;color:var(--muted);max-width:44ch;font-size:1.05rem;line-height:1.7}
 .hero-sub b{color:var(--text)}
 .hero-cta{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;font-size:.92rem;font-weight:500;font-family:inherit;cursor:pointer;border:0;transition:.2s}
-.btn-primary{background:var(--accent);color:#0D1A0F;font-weight:600}
+.btn-primary{background:var(--accent);color:#0F1117;font-weight:600}
 .btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
 .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
 .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
-.salary-badge{display:inline-flex;align-items:baseline;gap:8px;margin-top:22px;background:linear-gradient(135deg,rgba(74,222,128,.1),rgba(134,239,172,.06));border:1px solid rgba(74,222,128,.22);border-radius:10px;padding:12px 18px}
+.salary-badge{display:inline-flex;align-items:baseline;gap:8px;margin-top:22px;background:linear-gradient(135deg,rgba(245,165,36,.1),rgba(252,211,77,.06));border:1px solid rgba(245,165,36,.22);border-radius:10px;padding:12px 18px}
 .salary-badge .amount{font-size:1.6rem;font-weight:700;letter-spacing:-.02em;color:var(--accent)}
 .salary-badge .label{font-size:.78rem;color:var(--muted)}
 /* avatar spinner — green variant */
@@ -107,7 +107,7 @@ h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;letter-spacing:-.02em;marg
 /* cap cards */
 .cap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
 .cap-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s}
-.cap-card::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(74,222,128,.05),transparent);opacity:0;transition:opacity .3s}
+.cap-card::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(245,165,36,.05),transparent);opacity:0;transition:opacity .3s}
 .cap-card:hover{border-color:var(--accent);transform:translateY(-3px)}
 .cap-card:hover::before{opacity:1}
 .cap-icon{font-size:1.6rem;margin-bottom:14px}
@@ -142,7 +142,7 @@ h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;letter-spacing:-.02em;marg
 .job .co{color:var(--accent);font-size:.88rem;margin-top:4px;font-weight:500}
 .job-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 .tag{font-size:.72rem;font-family:'JetBrains Mono',monospace;background:var(--bg3);border:1px solid var(--border);padding:3px 8px;border-radius:4px;color:var(--muted)}
-.tag.hi{border-color:rgba(74,222,128,.3);color:var(--accent)}
+.tag.hi{border-color:rgba(245,165,36,.3);color:var(--accent)}
 ul.jlist{margin-top:14px;list-style:none;display:grid;gap:6px}
 ul.jlist li{font-size:.9rem;color:var(--muted);padding-left:16px;position:relative;line-height:1.6}
 ul.jlist li::before{content:"";position:absolute;left:0;top:.65em;width:6px;height:1px;background:var(--accent)}
@@ -156,12 +156,12 @@ ul.jlist li b{color:var(--text);font-weight:500}
 .shot-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:border-color .25s,transform .25s}
 .shot-card:hover{border-color:var(--accent);transform:translateY(-4px)}
 .shot-cover{aspect-ratio:16/9;background:var(--bg3);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center}
-.shot-cover .cg{position:absolute;inset:0;opacity:.22;background:linear-gradient(rgba(74,222,128,.12) 1px,transparent 1px) 0 0/100% 20px,linear-gradient(90deg,rgba(74,222,128,.12) 1px,transparent 1px) 0 0/20px 100%}
+.shot-cover .cg{position:absolute;inset:0;opacity:.22;background:linear-gradient(rgba(245,165,36,.12) 1px,transparent 1px) 0 0/100% 20px,linear-gradient(90deg,rgba(245,165,36,.12) 1px,transparent 1px) 0 0/20px 100%}
 .shot-cover.has-img .cg,.shot-cover.has-img .mk{display:none}
 .shot-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.07) 50%,transparent 60%);transform:translateX(-120%);transition:transform .7s ease}
 .shot-card:hover .shot-cover::after{transform:translateX(120%)}
-.shot-cover .pf-tag{position:absolute;top:8px;right:8px;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;background:rgba(13,26,15,.82);color:#fff;padding:3px 7px;border-radius:4px}
-.shot-cover .mk{font-size:2rem;font-weight:700;letter-spacing:-.04em;color:rgba(74,222,128,.25);position:relative;z-index:1;transition:transform .4s}
+.shot-cover .pf-tag{position:absolute;top:8px;right:8px;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;background:rgba(15,17,23,.82);color:#fff;padding:3px 7px;border-radius:4px}
+.shot-cover .mk{font-size:2rem;font-weight:700;letter-spacing:-.04em;color:rgba(245,165,36,.25);position:relative;z-index:1;transition:transform .4s}
 .shot-card:hover .mk{transform:scale(1.08)}
 .shot-body{padding:16px 18px;flex:1;display:flex;flex-direction:column;gap:7px}
 .shot-body h3{font-size:.97rem;font-weight:600}
@@ -172,7 +172,7 @@ ul.jlist li b{color:var(--text);font-weight:500}
 .proj-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:border-color .25s,transform .25s}
 .proj-card:hover{border-color:var(--accent);transform:translateY(-4px)}
 .proj-cover{aspect-ratio:16/9;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:2.2rem;position:relative;overflow:hidden}
-.proj-cover .cg{position:absolute;inset:0;opacity:.22;background:linear-gradient(rgba(74,222,128,.12) 1px,transparent 1px) 0 0/100% 20px,linear-gradient(90deg,rgba(74,222,128,.12) 1px,transparent 1px) 0 0/20px 100%}
+.proj-cover .cg{position:absolute;inset:0;opacity:.22;background:linear-gradient(rgba(245,165,36,.12) 1px,transparent 1px) 0 0/100% 20px,linear-gradient(90deg,rgba(245,165,36,.12) 1px,transparent 1px) 0 0/20px 100%}
 .proj-body{padding:18px;flex:1;display:flex;flex-direction:column;gap:8px}
 .proj-body h3{font-size:.97rem;font-weight:600}
 .proj-body p{font-size:.84rem;color:var(--muted);line-height:1.6;flex:1}
@@ -186,7 +186,7 @@ ul.jlist li b{color:var(--text);font-weight:500}
 .stack-icon{font-size:2rem;margin-bottom:8px;line-height:1}
 .stack-name{font-size:.78rem;color:var(--muted);line-height:1.3}
 .stack-item.key .stack-name{color:var(--accent)}
-.stack-item.key{border-color:rgba(74,222,128,.25)}
+.stack-item.key{border-color:rgba(245,165,36,.25)}
 
 /* contact */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
@@ -198,7 +198,7 @@ ul.jlist li b{color:var(--text);font-weight:500}
 .cl-icon{font-size:1.3rem;flex:none}
 .cl-body .cl-label{font-size:.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
 .cl-body .cl-val{font-size:.92rem;color:var(--text);margin-top:2px}
-.avail-card{background:linear-gradient(135deg,rgba(74,222,128,.07),rgba(134,239,172,.04));border:1px solid rgba(74,222,128,.18);border-radius:12px;padding:24px;margin-top:20px}
+.avail-card{background:linear-gradient(135deg,rgba(245,165,36,.07),rgba(252,211,77,.04));border:1px solid rgba(245,165,36,.18);border-radius:12px;padding:24px;margin-top:20px}
 .avail-card p{color:var(--muted);font-size:.9rem;line-height:1.7}
 .avail-card .ac-head{font-weight:600;color:var(--text);margin-bottom:8px;font-size:1rem}
 footer{border-top:1px solid var(--border);padding:28px 0}
@@ -447,11 +447,11 @@ footer{border-top:1px solid var(--border);padding:28px 0}
     <p class="sec-sub" data-i="sub-ton">Telegram Mini Apps · TON</p>
     <div class="proj-grid">
       <a class="proj-card" href="https://t.me/wmarket_ton_bot/WangMarket" target="_blank" rel="noopener">
-        <div class="proj-cover" style="background:#0A1A0C"><span class="cg"></span><span style="position:relative;z-index:1;color:rgba(74,222,128,.3);font-weight:800;letter-spacing:-.04em">WM</span></div>
+        <div class="proj-cover" style="background:#0C0F16"><span class="cg"></span><span style="position:relative;z-index:1;color:rgba(245,165,36,.3);font-weight:800;letter-spacing:-.04em">WM</span></div>
         <div class="proj-body"><h3>WangMarket</h3><p data-i="rton1">Мини-приложение с TON-кошельком и внутренней экономикой.</p><div class="proj-tags"><span>WebGL</span><span>TON Connect</span><span>Unity</span></div></div>
       </a>
       <a class="proj-card" href="https://t.me/FlappyMoney_Bot?startapp=re" target="_blank" rel="noopener">
-        <div class="proj-cover" style="background:#0A1A0C"><span class="cg"></span><span style="position:relative;z-index:1;color:rgba(74,222,128,.3);font-weight:800;letter-spacing:-.04em">FM</span></div>
+        <div class="proj-cover" style="background:#0C0F16"><span class="cg"></span><span style="position:relative;z-index:1;color:rgba(245,165,36,.3);font-weight:800;letter-spacing:-.04em">FM</span></div>
         <div class="proj-body"><h3>FlappyMoney</h3><p data-i="rton2">Аркада в Telegram: быстрая загрузка WebGL, игровые вебхуки.</p><div class="proj-tags"><span>WebGL</span><span>TON Connect</span><span>Unity</span></div></div>
       </a>
     </div>
