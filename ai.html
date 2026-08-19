@@ -55,12 +55,13 @@ nav{
 }
 .nav-links a:hover,.nav-links a.active{background:var(--bg3);color:var(--text)}
 .nav-switch a{
-  display:inline-flex;align-items:center;gap:7px;
-  padding:7px 14px;border:1px solid var(--border);border-radius:8px;
-  font-size:.83rem;color:var(--muted);transition:.2s;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 16px;border:1px solid rgba(245,165,36,.45);border-radius:8px;
+  font-size:.85rem;font-weight:600;color:#F5A524;background:rgba(245,165,36,.12);transition:.2s;
 }
-.nav-switch a:hover{border-color:#F5A524;color:#F5A524}
-.nav-switch .pip{width:7px;height:7px;border-radius:50%;background:#4ADEBC;flex:none}
+.nav-switch a:hover{background:rgba(245,165,36,.22);border-color:#F5A524;transform:translateY(-1px);box-shadow:0 4px 16px rgba(245,165,36,.18)}
+.nav-switch .pip{width:8px;height:8px;border-radius:50%;background:#F5A524;flex:none;box-shadow:0 0 0 0 rgba(245,165,36,.6);animation:swpulse 2.2s ease-out infinite}
+@keyframes swpulse{0%{box-shadow:0 0 0 0 rgba(245,165,36,.55)}70%{box-shadow:0 0 0 7px rgba(245,165,36,0)}100%{box-shadow:0 0 0 0 rgba(245,165,36,0)}}
 .lang-sw{display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden}
 .lang-sw button{background:none;border:0;padding:6px 10px;cursor:pointer;color:var(--muted);font-size:.78rem;font-family:inherit;transition:.18s}
 .lang-sw button.on{background:var(--bg3);color:var(--text)}
