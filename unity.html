@@ -244,7 +244,7 @@ footer{border-top:1px solid var(--border);padding:28px 0}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 @media(max-width:600px){.nav-in{gap:8px}.nav-switch a{padding:7px 9px}.shot-cover{height:190px}}
 .bot-cover{background:radial-gradient(ellipse at center,#26344b,#141b28)}.bot-cover img{width:120px;height:120px;border-radius:25px;object-fit:cover;z-index:1}.bot-cover::after{display:none}</style>
-</head>
+<link rel="stylesheet" href="motion.css"><script src="motion.js" defer></script></head>
 <body>
 <div id="progress"></div>
 <nav>
@@ -272,7 +272,7 @@ footer{border-top:1px solid var(--border);padding:28px 0}
 <div class="wrap">
   <div class="hero-grid">
     <div>
-      <div class="hero-eyebrow"><span class="dot"></span><span data-i="ey">Unity Developer / Lead R&D · Москва · открыт к предложениям</span></div>
+      <div class="hero-eyebrow"><span class="dot"></span><span data-i="ey">Unity Developer / Lead R&D · Москва · готов к релокации</span></div>
       <h1>
         <span>Константин Емяшев</span>
         <span class="role-line" data-i="h1role">Unity Developer</span>
@@ -428,9 +428,9 @@ footer{border-top:1px solid var(--border);padding:28px 0}
   <h2 data-i="h-proj">Выпущенные проекты</h2>
   <p class="sec-sub" data-i="sub-proj">5 релизов в App Store, 1 в Google Play, 2 Telegram Mini Apps на TON. Полный цикл — от прототипа до прод-релиза и поддержки.</p></div>
 
-  <div class="shots-grid rv">
+  <div class="gallery-toolbar"><span data-i="gallery-note">Анимированная подборка официальных скриншотов</span><button type="button" class="gallery-toggle" aria-pressed="false" data-i="gallery-pause">Пауза</button></div><div class="shots-grid rv">
     <a class="shot-card" href="https://apps.apple.com/app/last-oasis/id6479317330" target="_blank" rel="noopener">
-      <div class="shot-cover"><img src="img/last-oasis.jpg" alt="Иконка Last Oasis" width="160" height="160" loading="lazy"><span class="pf-tag">iOS</span></div>
+      <div class="shot-cover game-gallery animated-demo" data-demo="gallery"><img class="game-frame current" src="img/last-oasis-screen-1.jpg" alt="last-oasis — скриншот 1" loading="lazy" width="360" height="640"><img class="game-frame" src="img/last-oasis-screen-2.jpg" alt="last-oasis — скриншот 2" loading="lazy" width="360" height="640"><img class="game-frame" src="img/last-oasis-screen-3.jpg" alt="last-oasis — скриншот 3" loading="lazy" width="360" height="640"><span class="pf-tag">iOS</span><span class="gallery-caption" data-i="gallery-label">Скриншоты игры</span></div>
       <div class="shot-body"><h3>Last Oasis</h3><span class="project-destination">App Store</span><p data-i="r1">Кор- и мета-механики, оптимизация клиента, клиент-серверная часть.</p><div class="shot-tags"><span>ECS</span><span>Addressables</span><span>Photon</span></div></div>
     </a>
     <article class="shot-card archived">
@@ -438,15 +438,15 @@ footer{border-top:1px solid var(--border);padding:28px 0}
       <div class="shot-body"><h3>HeartTok</h3><span class="project-destination" data-i="archive">Ссылка в App Store недоступна</span><p data-i="r2">Мета-слой интерактивных историй, конфиги на JSON, продуктовая аналитика.</p><div class="shot-tags"><span>Firebase</span><span>AppsFlyer</span><span>Remote Config</span></div></div>
     </article>
     <a class="shot-card" href="https://apps.apple.com/app/zombie-crusher-survival-rpg/id6446779397" target="_blank" rel="noopener">
-      <div class="shot-cover"><img src="img/zombie-crusher.jpg" alt="Иконка Zombie Crusher" width="160" height="160" loading="lazy"><span class="pf-tag">iOS</span></div>
+      <div class="shot-cover game-gallery animated-demo" data-demo="gallery"><img class="game-frame current" src="img/zombie-crusher-screen-1.jpg" alt="zombie-crusher — скриншот 1" loading="lazy" width="360" height="640"><img class="game-frame" src="img/zombie-crusher-screen-2.jpg" alt="zombie-crusher — скриншот 2" loading="lazy" width="360" height="640"><img class="game-frame" src="img/zombie-crusher-screen-3.jpg" alt="zombie-crusher — скриншот 3" loading="lazy" width="360" height="640"><span class="pf-tag">iOS</span><span class="gallery-caption" data-i="gallery-label">Скриншоты игры</span></div>
       <div class="shot-body"><h3>Zombie Crusher</h3><span class="project-destination">App Store</span><p data-i="r3">Боевые и мета-механики, оптимизация под low-tier устройства.</p><div class="shot-tags"><span>Unity</span><span>Zenject</span><span>UniTask</span></div></div>
     </a>
     <a class="shot-card" href="https://apps.apple.com/app/heroes-tale-raid-and-loot/id6450005708" target="_blank" rel="noopener">
-      <div class="shot-cover"><img src="img/heroes-tale.jpg" alt="Иконка Heroes Tale" width="160" height="160" loading="lazy"><span class="pf-tag">iOS</span></div>
+      <div class="shot-cover game-gallery animated-demo" data-demo="gallery"><img class="game-frame current" src="img/heroes-tale-screen-1.jpg" alt="heroes-tale — скриншот 1" loading="lazy" width="360" height="640"><img class="game-frame" src="img/heroes-tale-screen-2.jpg" alt="heroes-tale — скриншот 2" loading="lazy" width="360" height="640"><img class="game-frame" src="img/heroes-tale-screen-3.jpg" alt="heroes-tale — скриншот 3" loading="lazy" width="360" height="640"><span class="pf-tag">iOS</span><span class="gallery-caption" data-i="gallery-label">Скриншоты игры</span></div>
       <div class="shot-body"><h3>Heroes Tale</h3><span class="project-destination">App Store</span><p data-i="r4">Прогрессия, экономика, редакторные инструменты для геймдизайна.</p><div class="shot-tags"><span>Unity</span><span>Odin</span><span>Photon</span></div></div>
     </a>
     <a class="shot-card" href="https://apps.apple.com/app/sin-city-girls/id6474139081" target="_blank" rel="noopener">
-      <div class="shot-cover"><img src="img/sin-city-girls.jpg" alt="Иконка Sin City Girls" width="160" height="160" loading="lazy"><span class="pf-tag">iOS</span></div>
+      <div class="shot-cover game-gallery animated-demo" data-demo="gallery"><img class="game-frame current" src="img/sin-city-girls-screen-1.jpg" alt="sin-city-girls — скриншот 1" loading="lazy" width="360" height="640"><img class="game-frame" src="img/sin-city-girls-screen-2.jpg" alt="sin-city-girls — скриншот 2" loading="lazy" width="360" height="640"><span class="pf-tag">iOS</span><span class="gallery-caption" data-i="gallery-label">Скриншоты игры</span></div>
       <div class="shot-body"><h3>Sin City Girls</h3><span class="project-destination">App Store</span><p data-i="r5">Портирование на WebGL и Steam, платёжные SDK.</p><div class="shot-tags"><span>WebGL</span><span>Steam API</span><span>Nutaku</span></div></div>
     </a>
     <a class="shot-card" href="https://play.google.com/store/apps/details?id=com.matryoshka.farminggame" target="_blank" rel="noopener">
@@ -509,7 +509,7 @@ footer{border-top:1px solid var(--border);padding:28px 0}
       <p data-i="sub-cont">Расскажите про задачу — отвечу в тот же день.</p>
       <div class="avail-card">
         <div class="ac-head" data-i="av-head">Готовность к работе</div>
-        <p data-i="avail">Москва. Готов к переезду в Казань, к командировкам. Офис, гибрид, удалённо. Гражданство РФ.</p>
+        <p data-i="avail">Москва. Готов к релокации в город или страну работодателя и к командировкам. Офис, гибрид, удалённо. Гражданство РФ.</p>
       </div>
     </div>
     <div class="contact-links rv">
@@ -545,11 +545,12 @@ footer{border-top:1px solid var(--border);padding:28px 0}
 <script>
 const STILL=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 const D={
+"gallery-label":"Game screenshots", "gallery-note":"Animated gallery of official screenshots", "gallery-pause":"Pause",
  "store-note":"Links open project listings. Installation availability depends on your region and the app’s store status.",
  "archive":"App Store link unavailable" ,
   n1:"What I do",n2:"Experience",n3:"Projects",n4:"Stack",n5:"Contacts",
   sw:"Software / AI",
-  ey:"Unity Developer / Lead R&D · Moscow · open to offers",
+  ey:"Unity Developer / Lead R&D · Moscow · open to relocation worldwide",
   h1role:"Unity Developer",
   sub:"Senior Unity Developer and Tech Lead. <b>5 years commercial experience</b>, 7 production releases — from hyper-casual to Steam. From Junior to Lead R&D inside one company.",
   salNote:"net · Unity Developer",
@@ -597,7 +598,7 @@ const D={
   "h-stack":"Stack","sub-stack":"Everything I have worked with in production and am ready to bring to the next project. Highlighted — key competencies.",
   "en-skill":"English B2",
   "h-cont":"Contacts","sub-cont":"Tell me about the role — I reply the same day.",
-  "av-head":"Availability",avail:"Moscow. Open to relocating to Kazan, business trips. Office, hybrid, remote. Russian citizenship.",ph:"Phone",now:"now",
+  "av-head":"Availability",avail:"Based in Moscow. Open to relocating to the employer’s city or country worldwide and to business trips. On-site, hybrid or remote. Russian citizenship.",ph:"Phone",now:"now",
 };
 const nodes=[...document.querySelectorAll('[data-i]')];
 const RU=new Map(nodes.map(n=>[n,n.innerHTML]));
