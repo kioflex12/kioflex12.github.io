@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0F1117">
+<meta name="description" content="Константин Емяшев — Unity Developer и Lead R&amp;D. Выпущенные игры, оптимизация, кроссплатформенная разработка.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <title>Константин Емяшев — Unity Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -231,7 +233,17 @@ footer{border-top:1px solid var(--border);padding:28px 0}
   .rv{opacity:1;transform:none}
   .mp-fill{animation:none;transform:scaleX(1)}
 }
-</style>
+
+.shot-cover{background:radial-gradient(ellipse at 50% 30%,#29364c,#151c28);height:205px;aspect-ratio:auto}
+.shot-cover img{width:130px;height:130px;object-fit:cover;border-radius:27px;box-shadow:0 12px 30px #0006;z-index:1}
+.shot-cover::after{display:none}.project-destination{display:block;font-size:.875rem;color:var(--accent);margin:4px 0 12px}
+.heart-cover{background:radial-gradient(ellipse at center,#50213d,#211827);color:#f5a5cb}.heart-cover svg{width:105px;height:105px}
+.archived:hover{transform:none;border-color:var(--border)}.archived .project-destination{color:var(--muted)}
+#avatarBox{object-fit:cover}.rv{opacity:1;transform:none}.shot-note{font-size:.875rem}
+:focus-visible{outline:2px solid var(--accent);outline-offset:5px}section{scroll-margin-top:70px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media(max-width:600px){.nav-in{gap:8px}.nav-switch a{padding:7px 9px}.shot-cover{height:190px}}
+.bot-cover{background:radial-gradient(ellipse at center,#26344b,#141b28)}.bot-cover img{width:120px;height:120px;border-radius:25px;object-fit:cover;z-index:1}.bot-cover::after{display:none}</style>
 </head>
 <body>
 <div id="progress"></div>
@@ -246,7 +258,7 @@ footer{border-top:1px solid var(--border);padding:28px 0}
       <a href="#contact" data-i="n5">Контакты</a>
     </div>
     <div class="nav-switch">
-      <a href="ai.html"><span class="pip"></span><span data-i="sw">→ AI/LLM резюме</span></a>
+      <a href="ai.html"><span class="pip"></span><span data-i="sw">Разработка / AI</span></a>
     </div>
     <div class="lang-sw">
       <button class="on" id="ru">RU</button>
@@ -272,7 +284,7 @@ footer{border-top:1px solid var(--border);padding:28px 0}
       </div>
     </div>
     <div class="avatar-wrap rv" style="--rd:.15s">
-      <div class="avatar-placeholder" id="avatarBox">КЕ</div>
+      <img class="avatar-placeholder" id="avatarBox" src="img/avatar.jpg" alt="Константин Емяшев" width="260" height="260">
     </div>
   </div>
   <div class="stats rv" style="--rd:.5s">
@@ -327,7 +339,7 @@ footer{border-top:1px solid var(--border);padding:28px 0}
 <div class="wrap">
   <div class="rv"><div class="sec-label">02</div>
   <h2 data-i="h-exp">Опыт</h2>
-  <p class="sec-sub" data-i="sub-exp">5 лет 3 месяца. Три компании, путь от Junior до Lead R&D.</p></div>
+  <p class="sec-sub" data-i="sub-exp">5+ лет. Три компании, путь от Junior до Lead R&D.</p></div>
 
   <div class="track-wrap rv" id="utrack">
     <div class="track-label" data-i="tr">Карьерный путь</div>
@@ -342,7 +354,7 @@ footer{border-top:1px solid var(--border);padding:28px 0}
 
   <div class="timeline">
     <div class="job rv">
-      <div class="job-when"><div class="period mono">07.2022 — <span data-i="now">н.в.</span></div><div class="dur mono" data-i="d1">4 года 2 мес.</div></div>
+      <div class="job-when"><div class="period mono">07.2022 — <span data-i="now">н.в.</span></div><div class="dur mono" data-i="d1">4+ года</div></div>
       <div class="job-dot"></div>
       <div>
         <h3 data-i="j1t">Lead R&D / Senior Unity Developer</h3>
@@ -417,42 +429,42 @@ footer{border-top:1px solid var(--border);padding:28px 0}
   <p class="sec-sub" data-i="sub-proj">5 релизов в App Store, 1 в Google Play, 2 Telegram Mini Apps на TON. Полный цикл — от прототипа до прод-релиза и поддержки.</p></div>
 
   <div class="shots-grid rv">
-    <a class="shot-card" href="https://apps.apple.com/us/app/last-oasis/id6479317330" target="_blank" rel="noopener">
-      <div class="shot-cover" data-img="last-oasis" style="background-color:#16233A"><span class="cg"></span><span class="pf-tag">iOS</span><span class="mk">LO</span></div>
-      <div class="shot-body"><h3>Last Oasis</h3><p data-i="r1">Кор- и мета-механики, оптимизация клиента, клиент-серверная часть.</p><div class="shot-tags"><span>ECS</span><span>Addressables</span><span>Photon</span></div></div>
+    <a class="shot-card" href="https://apps.apple.com/app/last-oasis/id6479317330" target="_blank" rel="noopener">
+      <div class="shot-cover"><img src="img/last-oasis.jpg" alt="Иконка Last Oasis" width="160" height="160" loading="lazy"><span class="pf-tag">iOS</span></div>
+      <div class="shot-body"><h3>Last Oasis</h3><span class="project-destination">App Store</span><p data-i="r1">Кор- и мета-механики, оптимизация клиента, клиент-серверная часть.</p><div class="shot-tags"><span>ECS</span><span>Addressables</span><span>Photon</span></div></div>
     </a>
-    <a class="shot-card" href="https://apps.apple.com/us/app/hearttok-romantic-stories/id6689520791" target="_blank" rel="noopener">
-      <div class="shot-cover" data-img="hearttok" style="background-color:#3A1630"><span class="cg"></span><span class="pf-tag">iOS</span><span class="mk">HT</span></div>
-      <div class="shot-body"><h3>HeartTok</h3><p data-i="r2">Мета-слой интерактивных историй, конфиги на JSON, продуктовая аналитика.</p><div class="shot-tags"><span>Firebase</span><span>AppsFlyer</span><span>Remote Config</span></div></div>
+    <article class="shot-card archived">
+      <div class="shot-cover heart-cover"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M40 65 13 39C-4 18 23 4 40 24 57 4 84 18 67 39Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M25 38h30M25 47h20" stroke="currentColor" stroke-width="2"/></svg><span class="pf-tag">iOS</span></div>
+      <div class="shot-body"><h3>HeartTok</h3><span class="project-destination" data-i="archive">Ссылка в App Store недоступна</span><p data-i="r2">Мета-слой интерактивных историй, конфиги на JSON, продуктовая аналитика.</p><div class="shot-tags"><span>Firebase</span><span>AppsFlyer</span><span>Remote Config</span></div></div>
+    </article>
+    <a class="shot-card" href="https://apps.apple.com/app/zombie-crusher-survival-rpg/id6446779397" target="_blank" rel="noopener">
+      <div class="shot-cover"><img src="img/zombie-crusher.jpg" alt="Иконка Zombie Crusher" width="160" height="160" loading="lazy"><span class="pf-tag">iOS</span></div>
+      <div class="shot-body"><h3>Zombie Crusher</h3><span class="project-destination">App Store</span><p data-i="r3">Боевые и мета-механики, оптимизация под low-tier устройства.</p><div class="shot-tags"><span>Unity</span><span>Zenject</span><span>UniTask</span></div></div>
     </a>
-    <a class="shot-card" href="https://apps.apple.com/us/app/zombie-crusher-survival-rpg/id6446779397" target="_blank" rel="noopener">
-      <div class="shot-cover" data-img="zombie-crusher" style="background-color:#1E2E1B"><span class="cg"></span><span class="pf-tag">iOS</span><span class="mk">ZC</span></div>
-      <div class="shot-body"><h3>Zombie Crusher</h3><p data-i="r3">Боевые и мета-механики, оптимизация под low-tier устройства.</p><div class="shot-tags"><span>Unity</span><span>Zenject</span><span>UniTask</span></div></div>
+    <a class="shot-card" href="https://apps.apple.com/app/heroes-tale-raid-and-loot/id6450005708" target="_blank" rel="noopener">
+      <div class="shot-cover"><img src="img/heroes-tale.jpg" alt="Иконка Heroes Tale" width="160" height="160" loading="lazy"><span class="pf-tag">iOS</span></div>
+      <div class="shot-body"><h3>Heroes Tale</h3><span class="project-destination">App Store</span><p data-i="r4">Прогрессия, экономика, редакторные инструменты для геймдизайна.</p><div class="shot-tags"><span>Unity</span><span>Odin</span><span>Photon</span></div></div>
     </a>
-    <a class="shot-card" href="https://apps.apple.com/us/app/heroes-tale-raid-and-loot/id6450005708" target="_blank" rel="noopener">
-      <div class="shot-cover" data-img="heroes-tale" style="background-color:#2C2413"><span class="cg"></span><span class="pf-tag">iOS</span><span class="mk">HT</span></div>
-      <div class="shot-body"><h3>Heroes Tale</h3><p data-i="r4">Прогрессия, экономика, редакторные инструменты для геймдизайна.</p><div class="shot-tags"><span>Unity</span><span>Odin</span><span>Photon</span></div></div>
-    </a>
-    <a class="shot-card" href="https://apps.apple.com/us/app/sin-city-girls/id6474139081" target="_blank" rel="noopener">
-      <div class="shot-cover" data-img="sin-city-girls" style="background-color:#2A1526"><span class="cg"></span><span class="pf-tag">iOS · WebGL · Steam</span><span class="mk">SC</span></div>
-      <div class="shot-body"><h3>Sin City Girls</h3><p data-i="r5">Портирование на WebGL и Steam, платёжные SDK.</p><div class="shot-tags"><span>WebGL</span><span>Steam API</span><span>Nutaku</span></div></div>
+    <a class="shot-card" href="https://apps.apple.com/app/sin-city-girls/id6474139081" target="_blank" rel="noopener">
+      <div class="shot-cover"><img src="img/sin-city-girls.jpg" alt="Иконка Sin City Girls" width="160" height="160" loading="lazy"><span class="pf-tag">iOS</span></div>
+      <div class="shot-body"><h3>Sin City Girls</h3><span class="project-destination">App Store</span><p data-i="r5">Портирование на WebGL и Steam, платёжные SDK.</p><div class="shot-tags"><span>WebGL</span><span>Steam API</span><span>Nutaku</span></div></div>
     </a>
     <a class="shot-card" href="https://play.google.com/store/apps/details?id=com.matryoshka.farminggame" target="_blank" rel="noopener">
-      <div class="shot-cover" data-img="farmingfever" style="background-color:#15291F"><span class="cg"></span><span class="pf-tag">Android</span><span class="mk">FF</span></div>
-      <div class="shot-body"><h3>FarmingFever</h3><p data-i="r6">Matryoshka: механики, CI/CD в TeamCity, Spine-анимации, миграция сохранений.</p><div class="shot-tags"><span>Unity</span><span>Kotlin</span><span>TeamCity</span></div></div>
+      <div class="shot-cover"><img src="img/farmingfever.jpg" alt="Иконка FarmingFever" width="160" height="160" loading="lazy"><span class="pf-tag">Android</span></div>
+      <div class="shot-body"><h3>FarmingFever</h3><span class="project-destination">Google Play</span><p data-i="r6">Matryoshka: механики, CI/CD в TeamCity, Spine-анимации, миграция сохранений.</p><div class="shot-tags"><span>Unity</span><span>Kotlin</span><span>TeamCity</span></div></div>
     </a>
   </div>
-  <p class="shot-note rv" data-i="ns">Плитки ждут скриншоты: положи файлы в <code>img/</code> с именами <code>last-oasis.jpg</code>, <code>hearttok.jpg</code>, <code>zombie-crusher.jpg</code>, <code>heroes-tale.jpg</code>, <code>sin-city-girls.jpg</code>, <code>farmingfever.jpg</code>.</p>
+  <p class="shot-note rv" data-i="store-note">Ссылки ведут на страницы проектов. Доступность установки зависит от региона и статуса приложения в магазине.</p>
 
   <div style="margin-top:40px" class="rv">
     <p class="sec-sub" data-i="sub-ton">Telegram Mini Apps · TON</p>
     <div class="proj-grid">
       <a class="proj-card" href="https://t.me/wmarket_ton_bot/WangMarket" target="_blank" rel="noopener">
-        <div class="proj-cover" style="background:#0C0F16"><span class="cg"></span><span style="position:relative;z-index:1;color:rgba(245,165,36,.3);font-weight:800;letter-spacing:-.04em">WM</span></div>
+        <div class="proj-cover bot-cover"><img src="img/wangmarket.jpg" alt="WangMarket" width="120" height="120" loading="lazy"></div>
         <div class="proj-body"><h3>WangMarket</h3><p data-i="rton1">Мини-приложение с TON-кошельком и внутренней экономикой.</p><div class="proj-tags"><span>WebGL</span><span>TON Connect</span><span>Unity</span></div></div>
       </a>
       <a class="proj-card" href="https://t.me/FlappyMoney_Bot?startapp=re" target="_blank" rel="noopener">
-        <div class="proj-cover" style="background:#0C0F16"><span class="cg"></span><span style="position:relative;z-index:1;color:rgba(245,165,36,.3);font-weight:800;letter-spacing:-.04em">FM</span></div>
+        <div class="proj-cover bot-cover"><img src="img/flappymoney.jpg" alt="FlappyMoney" width="120" height="120" loading="lazy"></div>
         <div class="proj-body"><h3>FlappyMoney</h3><p data-i="rton2">Аркада в Telegram: быстрая загрузка WebGL, игровые вебхуки.</p><div class="proj-tags"><span>WebGL</span><span>TON Connect</span><span>Unity</span></div></div>
       </a>
     </div>
@@ -525,7 +537,7 @@ footer{border-top:1px solid var(--border);padding:28px 0}
 <div class="wrap">
   <div class="foot-in">
     <span>© 2026 Константин Емяшев · Unity Developer</span>
-    <div class="foot-other"><a href="ai.html"><span class="pip2"></span><span data-i="sw">→ AI/LLM резюме</span></a></div>
+    <div class="foot-other"><a href="ai.html"><span class="pip2"></span><span data-i="sw">Разработка / AI</span></a></div>
   </div>
 </div>
 </footer>
@@ -533,8 +545,10 @@ footer{border-top:1px solid var(--border);padding:28px 0}
 <script>
 const STILL=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 const D={
+ "store-note":"Links open project listings. Installation availability depends on your region and the app’s store status.",
+ "archive":"App Store link unavailable" ,
   n1:"What I do",n2:"Experience",n3:"Projects",n4:"Stack",n5:"Contacts",
-  sw:"→ AI/LLM resume",
+  sw:"Software / AI",
   ey:"Unity Developer / Lead R&D · Moscow · open to offers",
   h1role:"Unity Developer",
   sub:"Senior Unity Developer and Tech Lead. <b>5 years commercial experience</b>, 7 production releases — from hyper-casual to Steam. From Junior to Lead R&D inside one company.",
@@ -549,9 +563,9 @@ const D={
   "mp-head":"Key metrics · from Meowpunk projects",
   mp1:"Build size",mp2:"FPS on low-tier Android/iOS",mp3:"Platforms",
   mb1:"App Store releases",mb2:"Telegram mini-apps",mb3:"FPS gain",mb4:"build size reduction",
-  "h-exp":"Experience","sub-exp":"5 years 3 months. Three companies, from Junior to Lead R&D.",
+  "h-exp":"Experience","sub-exp":"5+ years. Three companies, from Junior to Lead R&D.",
   tr:"Career track",
-  d1:"4 yr 2 mo",d2:"9 mo",d3:"5 mo",d4:"education",
+  d1:"4+ years",d2:"9 mo",d3:"5 mo",d4:"education",
   j1t:"Lead R&D / Senior Unity Developer",
   js1:"Optimisation and performance",js2:"Development and architecture",js3:"Lead and R&D",js4:"Stack",
   j1a:"<b>Build size ×3</b> — from 400 MB to 120 MB: Sprite Atlas, Asset Bundles, stripping, Addressables.",
@@ -609,10 +623,6 @@ const secs=navAs.map(a=>document.querySelector(a.getAttribute('href'))).filter(B
 let raf=null;
 function onScroll(){const h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';let cur=-1;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<=80)cur=i;});navAs.forEach((a,i)=>a.classList.toggle('active',i===cur));raf=null;}
 addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(onScroll);},{passive:true});onScroll();
-/* screenshots */
-document.querySelectorAll('[data-img]').forEach(c=>{['jpg','png','webp'].forEach(ext=>{const im=new Image();im.onload=()=>{c.style.backgroundImage='url("img/'+c.dataset.img+'.'+ext+'")';c.classList.add('has-img');};im.src='img/'+c.dataset.img+'.'+ext;});});
-/* avatar */
-const av=document.getElementById('avatarBox');['jpg','png','webp'].forEach(ext=>{const im=new Image();im.onload=()=>{av.style.backgroundImage='url("img/avatar.'+ext+'")';av.style.backgroundSize='cover';av.style.backgroundPosition='center';av.textContent='';};im.src='img/avatar.'+ext;});
 </script>
 </body>
 </html>

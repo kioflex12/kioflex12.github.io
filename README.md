@@ -1,29 +1,28 @@
 # Портфолио — Константин Емяшев
 
-Два тёмных резюме, переключаются друг на друга:
-- `ai.html` — AI / LLM Engineer (открывается по умолчанию)
-- `unity.html` — Unity Developer
-- `index.html` — редирект на ai.html
+Статический сайт на GitHub Pages, без сборки и зависимостей.
 
-## Как опубликовать на GitHub Pages (без терминала, ~2 минуты)
+- `ai.html` — разработка приложений, AI и автоматизация: Claude Deck, mail_service, Finance Manager.
+- `unity.html` — Unity, коммерческий опыт и выпущенные игры.
+- `portfolio.css`, `portfolio.js` — стили и RU/EN-переключатель страницы разработки.
+- `ai/index.html`, `unity/index.html` — совместимость с адресами с завершающим слешем.
 
-1. Зайди на https://github.com/new
-2. **Repository name:** `kioflex12.github.io` (ровно так, с твоим ником)
-3. Public → **Create repository**
-4. На странице репозитория: **Add file → Upload files**
-5. Перетащи сюда `ai.html`, `unity.html`, `index.html` и папку `img`
-6. **Commit changes**
-7. Через ~1 минуту сайт живой: **https://kioflex12.github.io**
+Локальный просмотр: `python -m http.server 8765`, затем открыть `/ai.html` или `/unity.html`.
+Публикация: push в существующую ветку `main` репозитория `kioflex12.github.io`.
 
-Переключатель в шапке ведёт с AI-резюме на Unity и обратно.
+## Контент и изображения
 
-## Через терминал (если удобнее команды)
+Описания проектов сверены с README репозиториев владельца. Коммерческий опыт сохранён из исходного резюме. Иллюстрации AI-проектов — схемы работы, а не скриншоты интерфейсов.
 
-```bash
-git init
-git add .
-git commit -m "portfolio"
-git branch -M main
-git remote add origin https://github.com/kioflex12/kioflex12.github.io.git
-git push -u origin main
-```
+Иконки игр сохранены локально из официальных карточек App Store (Apple Lookup API):
+- Last Oasis: 6479317330
+- Zombie Crusher: 6446779397
+- Heroes Tale: 6450005708
+- Sin City Girls: 6474139081
+- Farming Fever: Google Play, com.matryoshka.farminggame
+
+HeartTok: прежняя карточка 6689520791 возвращала 404 при проверке. Описание сохранено, внешняя кнопка убрана, используется нейтральная иллюстрация сердца вместо неподтверждённой иконки.
+
+Доступность страницы магазина не гарантирует доступность установки или серверов игры. Telegram-ссылки открывают ботов; их игровые сценарии требуют отдельной ручной проверки в Telegram.
+
+Иконки WangMarket и FlappyMoney получены из публичных Telegram-карточек соответствующих ботов. Ссылки App Store не фиксируют регион US.
