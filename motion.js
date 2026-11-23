@@ -31,8 +31,6 @@
   function render(state, animate = false) {
     const {el,kind,step} = state;
     el.classList.toggle('is-paused',state.paused || !state.visible || document.hidden);
-    const button = el.querySelector('.motion-toggle');
-    if (button) {button.textContent = state.paused ? words('Продолжить','Play') : words('Пауза','Pause');button.setAttribute('aria-pressed',String(state.paused));}
     if (kind === 'gallery') {el.querySelectorAll('.game-frame').forEach((image,i)=>{image.classList.toggle('current',i===step);image.setAttribute('aria-hidden',String(i!==step));});return;}
     if (kind === 'pipeline') {
       el.querySelectorAll('[data-stage]').forEach((node,i)=>{node.classList.toggle('active',i===step);node.classList.toggle('done',i<step);});
@@ -41,24 +39,31 @@
       el.querySelector('.run-explanation').textContent=words(stages[step][2],stages[step][3]);
       el.querySelector('.run-progress i').style.width=`${(step+1)/6*100}%`;
     } else {
-      const row=scenarios[kind][step];
-      el.querySelector('.demo-input').textContent=words(row[0],row[1]);
-      el.querySelector('.demo-result').textContent=words(row[2],row[3]);
-      const scene=el.querySelector('.demo-scene');scene.classList.remove('changing');
-      if(animate&&!reduced.matches) requestAnimationFrame(()=>scene.classList.add('changing'));
+      el.dataset.frame=String(step);
+      if(kind==='deck') {
+        el.querySelector('.task-state').textContent=[words('В очереди','Queued'),words('Claude работает','Claude working'),words('Build ✓ · ревью','Build ✓ · review')][step];
+        el.querySelector('.deck-event').textContent=[words('Jira: новая задача привязана к сессии','Jira: new task linked to session'),words('Claude: вношу изменения в auth.ts…','Claude: updating auth.ts…'),words('TeamCity: сборка готова · GitLab MR открыт','TeamCity: build passed · GitLab MR opened')][step];
+      } else if(kind==='finance') {
+        el.querySelector('.finance-message').textContent=step===0?words('400 продукты…','400 groceries…'):words('400 продукты ✓✓','400 groceries ✓✓');
+        el.querySelector('.finance-reply').textContent=[words('Введите трату сообщением','Add an expense in a message'),words('Определяю категорию…','Identifying category…'),words('✓ Записано: продукты · 400 ₽','✓ Saved: groceries · ₽400')][step];
+        el.querySelector('.finance-total').textContent=step===2?'12 800 ₽':'12 400 ₽';
+        el.querySelector('.finance-left').textContent=step===2?'17 200 ₽':'17 600 ₽';
+        el.querySelector('.finance-day').textContent=step===2?'1 720 ₽':'1 760 ₽';
+      } else if(kind==='mail') {
+        el.querySelector('.mail-result-title').textContent=step===2?words('ЧЕРНОВИК ОТВЕТА','REPLY DRAFT'):words('САММАРИ','SUMMARY');
+        el.querySelector('.mail-result-body').textContent=step===2?words('Привет! Завтра в 11:00 удобно. До встречи!','Hi! Tomorrow at 11:00 works for me. See you then!'):words('Встреча завтра в 11:00. Нужно подтвердить время.','Meeting tomorrow at 11:00. Please confirm the time.');
+      }
     }
   }
-  function syncGalleryButton(){const button=document.querySelector('.gallery-toggle');if(!button)return;const paused=states.filter(s=>s.kind==='gallery').every(s=>s.paused);button.textContent=paused?words('Продолжить','Play'):words('Пауза','Pause');button.setAttribute('aria-pressed',String(paused));}
+
   const observer = new IntersectionObserver(entries=>entries.forEach(entry=>{const state=states.find(s=>s.el===entry.target);state.visible=entry.isIntersecting;render(state);}),{threshold:.15});
   states.forEach(state=>{
     observer.observe(state.el);render(state);
-    state.el.querySelector('.motion-toggle')?.addEventListener('click',()=>{state.paused=!state.paused;render(state);});
     state.el.querySelector('.motion-restart')?.addEventListener('click',()=>{state.step=0;state.elapsed=0;render(state,true);});
   });
-  document.querySelector('.gallery-toggle')?.addEventListener('click',()=>{const galleries=states.filter(s=>s.kind==='gallery');const pause=!galleries.every(s=>s.paused);galleries.forEach(s=>{s.paused=pause;render(s);});syncGalleryButton();});
-  new MutationObserver(()=>{states.forEach(s=>render(s));syncGalleryButton();}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
-  reduced.addEventListener('change',()=>{states.forEach(s=>{s.paused=reduced.matches;render(s);});syncGalleryButton();});
+  new MutationObserver(()=>{states.forEach(s=>render(s));}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  reduced.addEventListener('change',()=>{states.forEach(s=>{s.paused=reduced.matches;render(s);});});
   document.addEventListener('visibilitychange',()=>states.forEach(s=>render(s)));
   setInterval(()=>{if(document.hidden)return;states.forEach(s=>{if(s.paused||!s.visible)return;s.elapsed+=250;const duration=s.kind==='gallery'?4200:s.kind==='pipeline'?2400:3200;if(s.elapsed<duration)return;s.elapsed=0;const count=s.kind==='pipeline'?6:s.kind==='gallery'?s.el.querySelectorAll('.game-frame').length:3;s.step=(s.step+1)%count;render(s,true);});},250);
-  syncGalleryButton();
+
 })();
